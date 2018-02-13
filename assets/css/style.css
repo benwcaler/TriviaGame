@@ -1,0 +1,50 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url(../images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#wrapper {
+    width: 90%;
+    height: auto;
+    margin: auto;
+    display: grid;
+    grid-template-rows: repeat (6, auto);
+    grid-template-columns: repeat (6, auto);
+    grid-gap: 10px;
+}
+
+#title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: gold;
+    text-shadow: black 5px 5px 5px ;
+    font-size: 60px;
+    grid-column-start: 10;
+    grid-column-end: 11;
+    grid-row-start: 2;
+    grid-row-end: 5;
+    text-align: center;
+}
+
+#hp {
+    font-family: potter;
+    font-size: 90px;
+    padding-bottom: 10px;
+}
+
+#choices {
+    color: red;
+}
+
+#test {
+    color: purple;
+}
+
+@font-face {
+    font-family: potter;
+    src: url(../potter.TTF);
+}
