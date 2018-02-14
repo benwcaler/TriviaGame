@@ -110,7 +110,7 @@ window.onload = function () {
 
     //button to start the game.
     $("#start").on("click", function () {
-        $("#timer").html(time)
+        $("#time").html(time)
         $("#inst").css("display", "none")
         $("#qa").css("display", "grid")
         displayQ()
@@ -126,7 +126,7 @@ window.onload = function () {
         qTimer = setInterval(function () {
             if (time > 0) {
                 time--
-                $("#timer").text(time)
+                $("#time").text(time)
             } else if (time === 0) {
                 clearTimer()
                 timesUp()
@@ -136,7 +136,7 @@ window.onload = function () {
         }, 1000);
         $("#question").text(eval("q" + qNum + ".question"))
         for (var j = 0; j < 4; j++) {
-            var newDiv = $("<div>");
+            var newDiv = $("<button>");
             newDiv.text(eval("q" + qNum + ".answers[" + j + "]"))
             newDiv.attr("id", "choices")
             $("#aa").append(newDiv)
