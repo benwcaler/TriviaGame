@@ -44,13 +44,12 @@ body {
     grid-column-end: 6;
     grid-row-start: 3;
     padding: 30px;
-    display: none; /*change to none in production*/
+    display: none;
     grid-template-rows: 75px 125px 175px;
     grid-gap: 10px;
 }
 
 #timer {
-    /* background-color: red; */
     grid-row: 1;
     text-align: center;
     align-self: center;
@@ -96,7 +95,7 @@ body {
     grid-column-end: 6;
     grid-row-start: 3;
     padding: 30px;
-    display: grid;
+    display: none;
     grid-template-rows: 200px 50px 50px 20px;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
@@ -136,7 +135,6 @@ body {
 }
 
 #question {
-    /* background-color: grey; */
     grid-row: 2;
     text-align: left;
     align-self: center;
@@ -146,7 +144,6 @@ body {
 }
 
 #aa {
-    /* background-color: pink; */
     grid-row: 3;
     text-align: left;
     display: grid;
@@ -172,7 +169,6 @@ body {
     grid-row-start: 3;
     padding: 30px ;
     font-family: wizard;
-    display: none; /*Remove this in production */
 }
 
 #institle {
@@ -192,6 +188,12 @@ button {
     color: #B29135;
     font-size: 40px;
     font-family: wizard;
+    outline: none;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity: 1.0;
 }
 
 @font-face {

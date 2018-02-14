@@ -52,17 +52,17 @@ window.onload = function () {
     }
     var q11 = {
         question: "Who found Harry, Ron, and Hermione in the woods in The Deathly Hallows",
-        answers: ["Lucius Malfoy", "Voldemort", "Snatchers", "Fenrir Greyback"],
+        answers: ["Fenrir Greyback","Lucius Malfoy", "Voldemort", "Snatchers"],
         correct: "Fenrir Greyback"
     }
     var q12 = {
         question: "How did Harry survive underwater in the Triwizard Tournament?",
-        answers: ["Bubble-head charm", "Gills charm", "Transfiguration", "Gillyweed"],
+        answers: ["Bubble-head charm", "Gillyweed", "Gills charm", "Transfiguration"],
         correct: "Gillyweed"
     }
     var q13 = {
         question: "Who did Ron turn into when Harry, Ron, and Hermione snuck into the Ministry of Magic in The Deathly Hallows?",
-        answers: ["Dirk Cresswell", "Mundungus Fletcher", "Albert Runcorn", "Reginald Cattermole"],
+        answers: ["Dirk Cresswell", "Mundungus Fletcher", "Reginald Cattermole","Albert Runcorn"],
         correct: "Reginald Cattermole"
     }
     var q14 = {
@@ -103,9 +103,9 @@ window.onload = function () {
 
     //variables to store number of correct, incorrect, and flags. 
 
-    var correct = 20;
+    var correct = 0;
     var incorrect = 0;
-    var time = 10;
+    var time = 15;
     var qTimer;
     var qNum = 1;
     var rank ;
@@ -125,6 +125,8 @@ window.onload = function () {
 
     function displayQ() {
         $("#aa").html("")
+        $("#qa").css("display", "grid")
+        $("#complete").css("display", "none")
         $("#timer").css("display", "inline")
         $("#time").text(time)
         $("#correct").css("display", "none")
@@ -138,7 +140,7 @@ window.onload = function () {
                 } else if (time === 0) {
                     clearTimer()
                     timesUp()
-                    time = 10;
+                    time = 15;
                 }
             }, 1000);
             $("#question").text(eval("q" + qNum + ".question"))
@@ -153,7 +155,6 @@ window.onload = function () {
         }
     }
 
-
     function timesUp() {
         $("button").each(function () {
             if ($(this).text() === eval("q" + qNum + ".correct")) {
@@ -161,7 +162,7 @@ window.onload = function () {
             }
         })
         clearTimer();
-        time = 10;
+        time = 15;
         $("#timer").css("display", "none");
         $("#timesup").css("display", "inline");
         incorrect++;
@@ -189,12 +190,12 @@ window.onload = function () {
         }
         $("#rnk").text(rank)
     }
-complete()
+
     $(document).on("click", "#choices", function () {
         if ($(this).text() === eval("q" + qNum + ".correct")) {
             $(this).css("color", "green");
             clearTimer();
-            time = 10;
+            time = 15;
             $("#timer").css("display", "none");
             $("#correct").css("display", "inline")
             correct++;
@@ -203,7 +204,7 @@ complete()
         } else {
             $(this).css("color", "red");
             clearTimer();
-            time = 10;
+            time = 15;
             $("button").each(function () {
                 if ($(this).text() === eval("q" + qNum + ".correct")) {
                     $(this).css("color", "green")
@@ -215,6 +216,13 @@ complete()
             qNum++;
             setTimeout(displayQ, 3000)
         }
+    })
+
+    $("#pa").on("click", function () {
+        qNum = 1;
+        correct = 0;
+        incorrect = 0;
+        displayQ()
     })
     //if question is incorrect, display red x next to answer and highlight correct answer in green. 
 }
