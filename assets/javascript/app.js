@@ -108,6 +108,7 @@ window.onload = function () {
     var time = 10;
     var qTimer;
     var qNum = 1;
+    var rank ;
 
     //button to start the game.
     $("#start").on("click", function () {
@@ -162,17 +163,27 @@ window.onload = function () {
         clearTimer();
         time = 10;
         $("#timer").css("display", "none");
-        $("#timesup").css("display", "inline")
+        $("#timesup").css("display", "inline");
         incorrect++;
-        qNum++
-        setTimeout(displayQ, 3000)
+        qNum++;
+        setTimeout(displayQ, 3000);
     }
 
     function complete() {
-        $("#complete").css("display", "grid")
-        $("#qa").css("display", "none")
+        $("#complete").css("display", "grid");
+        $("#qa").css("display", "none");
+        $("#right").text(correct);
+        $("#wrong").text(incorrect);
+        if (correct < 10) {
+            rank = "Muggle";
+            $("#rnkimg").attr("src", "assets/images/dumbledore.gif")
+        } else if (correct < 15) {
+            rank = "Prefect";
+            $("#rnkimg").attr("src", "assets/images/dumbledore.gif")
+        }
+        $("#rnk").text(rank)
     }
-
+complete()
     $(document).on("click", "#choices", function () {
         if ($(this).text() === eval("q" + qNum + ".correct")) {
             $(this).css("color", "green");
