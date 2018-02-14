@@ -113,6 +113,11 @@ body {
     margin: 10px 0;
 }
 
+#rnkimg {
+    border: #B29135 3px solid;
+    border-radius: 5px;
+}
+
 #score {
     align-self: center;
     justify-self: center;

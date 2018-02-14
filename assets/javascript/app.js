@@ -103,7 +103,7 @@ window.onload = function () {
 
     //variables to store number of correct, incorrect, and flags. 
 
-    var correct = 0;
+    var correct = 20;
     var incorrect = 0;
     var time = 10;
     var qTimer;
@@ -174,12 +174,18 @@ window.onload = function () {
         $("#qa").css("display", "none");
         $("#right").text(correct);
         $("#wrong").text(incorrect);
-        if (correct < 10) {
+        if (correct <= 10) {
             rank = "Muggle";
             $("#rnkimg").attr("src", "assets/images/dumbledore.gif")
-        } else if (correct < 15) {
+        } else if (correct <= 15) {
             rank = "Prefect";
-            $("#rnkimg").attr("src", "assets/images/dumbledore.gif")
+            $("#rnkimg").attr("src", "assets/images/prefect.jpg")
+        } else if (correct <= 19) {
+            rank = "Headmaster";
+            $("#rnkimg").attr("src", "assets/images/headmaster.jpg")
+        } else if (correct === 20) {
+            rank = "The Boy Who Lived";
+            $("#rnkimg").attr("src", "assets/images/th.jpg")
         }
         $("#rnk").text(rank)
     }
