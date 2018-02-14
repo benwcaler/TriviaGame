@@ -11,13 +11,13 @@ window.onload = function () {
         correct: "Rabbit"
     }
     var q3 = {
-        question: "Who was the quiddithc commentator in Harry's first years at Hogwarts?",
+        question: "Who was the quidditch commentator in Harry's first years at Hogwarts?",
         answers: ["Lee Jordan", "Dean Thomas", "Angelina Johnson", "Terry Boot"],
         correct: "Lee Jordan"
     }
     var q4 = {
         question: "Who disguised himself as Mad Eye Moody in The Goblet of Fire?",
-        answers: ["Erniie McMillian", "Barty Crouch Jr.", "Severus Snape", "Vincent Crabbe"],
+        answers: ["Ernie McMillian", "Barty Crouch Jr.", "Severus Snape", "Vincent Crabbe"],
         correct: "Barty Crouch Jr."
     }
     var q5 = {
@@ -82,13 +82,13 @@ window.onload = function () {
     }
     var q17 = {
         question: "How did Harry spend his first detention?",
-        answers: ["Signing qutographs", "Cleaning trophies", "Going into the Forbidden Forest", "Writing an essay"],
-        correct: "Going into the forbidden Forest"
+        answers: ["Signing autographs", "Cleaning trophies", "Going into the Forbidden Forest", "Writing an essay"],
+        correct: "Going into the Forbidden Forest"
     }
     var q18 = {
         question: "What happened to Neville's parents that they couldn't remember their son?",
         answers: ["The Confundus Charm was used on them", "They lost their memories in an apperation accident", "The Cruciatus Curse was used on them", "They didn't lose their memories"],
-        correct: "The Curciatus Curse was used on them"
+        correct: "The Cruciatus Curse was used on them"
     }
     var q19 = {
         question: "What crime was Hagrid commited of in his time at Hogwarts?",
@@ -104,6 +104,7 @@ window.onload = function () {
     //variables to store number of correct, incorrect, and flags. 
 
     var correct = 0;
+    var incorrect = 0;
     var time = 10;
     var qTimer;
     var qNum = 1;
@@ -123,39 +124,80 @@ window.onload = function () {
 
     function displayQ() {
         $("#aa").html("")
-        qTimer = setInterval(function () {
-            if (time > 0) {
-                time--
-                $("#time").text(time)
-            } else if (time === 0) {
-                clearTimer()
-                timesUp()
-                time = 10;
+        $("#timer").css("display", "inline")
+        $("#time").text(time)
+        $("#correct").css("display", "none")
+        $("#incorrect").css("display", "none")
+        $("#timesup").css("display", "none")
+        if (qNum < 21) {
+            qTimer = setInterval(function () {
+                if (time > 0) {
+                    time--
+                    $("#time").text(time)
+                } else if (time === 0) {
+                    clearTimer()
+                    timesUp()
+                    time = 10;
+                }
+            }, 1000);
+            $("#question").text(eval("q" + qNum + ".question"))
+            for (var j = 0; j < 4; j++) {
+                var newDiv = $("<button>");
+                newDiv.text(eval("q" + qNum + ".answers[" + j + "]"))
+                newDiv.attr("id", "choices")
+                $("#aa").append(newDiv)
             }
-
-        }, 1000);
-        $("#question").text(eval("q" + qNum + ".question"))
-        for (var j = 0; j < 4; j++) {
-            var newDiv = $("<button>");
-            newDiv.text(eval("q" + qNum + ".answers[" + j + "]"))
-            newDiv.attr("id", "choices")
-            $("#aa").append(newDiv)
+        } else if (qNum === 21) {
+            complete()
         }
     }
 
+
     function timesUp() {
-        // $("#answer").text(eval("q" + qNum + ".correct")) Displays the answer. Need to change to highlight the correct answer
+        $("button").each(function () {
+            if ($(this).text() === eval("q" + qNum + ".correct")) {
+                $(this).css("color", "green")
+            }
+        })
+        clearTimer();
+        time = 10;
+        $("#timer").css("display", "none");
+        $("#timesup").css("display", "inline")
+        incorrect++;
         qNum++
         setTimeout(displayQ, 3000)
     }
 
+    function complete() {
+        $("#complete").css("display", "grid")
+        $("#qa").css("display", "none")
+    }
+
     $(document).on("click", "#choices", function () {
         if ($(this).text() === eval("q" + qNum + ".correct")) {
-
+            $(this).css("color", "green");
+            clearTimer();
+            time = 10;
+            $("#timer").css("display", "none");
+            $("#correct").css("display", "inline")
+            correct++;
+            qNum++;
+            setTimeout(displayQ, 3000)
         } else {
-
+            $(this).css("color", "red");
+            clearTimer();
+            time = 10;
+            $("button").each(function () {
+                if ($(this).text() === eval("q" + qNum + ".correct")) {
+                    $(this).css("color", "green")
+                }
+            })
+            $("#timer").css("display", "none");
+            $("#incorrect").css("display", "inline")
+            incorrect++;
+            qNum++;
+            setTimeout(displayQ, 3000)
         }
     })
-
     //if question is incorrect, display red x next to answer and highlight correct answer in green. 
 }
