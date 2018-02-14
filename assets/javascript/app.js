@@ -111,6 +111,8 @@ window.onload = function () {
     //button to start the game.
     $("#start").on("click", function () {
         $("#timer").html(time)
+        $("#inst").css("display", "none")
+        $("#qa").css("display", "grid")
         displayQ()
     });
 
@@ -142,7 +144,7 @@ window.onload = function () {
     }
 
     function timesUp() {
-        $("#answer").text(eval("q" + qNum + ".correct"))
+        // $("#answer").text(eval("q" + qNum + ".correct")) Displays the answer. Need to change to highlight the correct answer
         qNum++
         setTimeout(displayQ, 3000)
     }
