@@ -52,7 +52,7 @@ window.onload = function () {
     }
     var q11 = {
         question: "Who found Harry, Ron, and Hermione in the woods in The Deathly Hallows",
-        answers: ["Fenrir Greyback","Lucius Malfoy", "Voldemort", "Snatchers"],
+        answers: ["Fenrir Greyback", "Lucius Malfoy", "Voldemort", "Snatchers"],
         correct: "Fenrir Greyback"
     }
     var q12 = {
@@ -62,7 +62,7 @@ window.onload = function () {
     }
     var q13 = {
         question: "Who did Ron turn into when Harry, Ron, and Hermione snuck into the Ministry of Magic in The Deathly Hallows?",
-        answers: ["Dirk Cresswell", "Mundungus Fletcher", "Reginald Cattermole","Albert Runcorn"],
+        answers: ["Dirk Cresswell", "Mundungus Fletcher", "Reginald Cattermole", "Albert Runcorn"],
         correct: "Reginald Cattermole"
     }
     var q14 = {
@@ -108,7 +108,7 @@ window.onload = function () {
     var time = 15;
     var qTimer;
     var qNum = 1;
-    var rank ;
+    var rank;
 
     //button to start the game.
     $("#start").on("click", function () {
