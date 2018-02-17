@@ -109,6 +109,7 @@ window.onload = function () {
     var qTimer;
     var qNum = 1;
     var rank;
+    var clicked = false;
 
     //button to start the game.
     $("#start").on("click", function () {
@@ -124,41 +125,42 @@ window.onload = function () {
     //function to display question and answers
 
     function displayQ() {
-        $("#aa").html("")
-        $("#qa").css("display", "grid")
-        $("#complete").css("display", "none")
-        $("#timer").css("display", "inline")
-        $("#time").text(time)
-        $("#correct").css("display", "none")
-        $("#incorrect").css("display", "none")
-        $("#timesup").css("display", "none")
+        $("#aa").html("");
+        $("#qa").css("display", "grid");
+        $("#complete").css("display", "none");
+        $("#timesup").css("display", "none");
+        $("#timer").css("display", "inline");
+        $("#time").text(time);
+        $("#correct").css("display", "none");
+        $("#incorrect").css("display", "none");
+        clicked = false;
         if (qNum < 21) {
             qTimer = setInterval(function () {
                 if (time > 0) {
                     time--
-                    $("#time").text(time)
+                    $("#time").text(time);
                 } else if (time === 0) {
-                    clearTimer()
-                    timesUp()
+                    clearTimer();
+                    timesUp();
                     time = 15;
                 }
             }, 1000);
-            $("#question").text(eval("q" + qNum + ".question"))
+            $("#question").text(eval("q" + qNum + ".question"));
             for (var j = 0; j < 4; j++) {
                 var newDiv = $("<button>");
-                newDiv.text(eval("q" + qNum + ".answers[" + j + "]"))
-                newDiv.attr("id", "choices")
-                $("#aa").append(newDiv)
+                newDiv.text(eval("q" + qNum + ".answers[" + j + "]"));
+                newDiv.attr("id", "choices");
+                $("#aa").append(newDiv);
             }
         } else if (qNum === 21) {
-            complete()
+            complete();
         }
     }
 
     function timesUp() {
         $("button").each(function () {
             if ($(this).text() === eval("q" + qNum + ".correct")) {
-                $(this).css("color", "green")
+                $(this).css("color", "green");
             }
         })
         clearTimer();
@@ -192,29 +194,32 @@ window.onload = function () {
     }
 
     $(document).on("click", "#choices", function () {
-        if ($(this).text() === eval("q" + qNum + ".correct")) {
-            $(this).css("color", "green");
-            clearTimer();
-            time = 15;
-            $("#timer").css("display", "none");
-            $("#correct").css("display", "inline")
-            correct++;
-            qNum++;
-            setTimeout(displayQ, 3000)
-        } else {
-            $(this).css("color", "red");
-            clearTimer();
-            time = 15;
-            $("button").each(function () {
-                if ($(this).text() === eval("q" + qNum + ".correct")) {
-                    $(this).css("color", "green")
-                }
-            })
-            $("#timer").css("display", "none");
-            $("#incorrect").css("display", "inline")
-            incorrect++;
-            qNum++;
-            setTimeout(displayQ, 3000)
+        if (clicked === false) {
+            clicked = true;
+            if ($(this).text() === eval("q" + qNum + ".correct")) {
+                $(this).css("color", "green");
+                clearTimer();
+                time = 15;
+                $("#timer").css("display", "none");
+                $("#correct").css("display", "inline")
+                correct++;
+                qNum++;
+                setTimeout(displayQ, 3000)
+            } else {
+                $(this).css("color", "red");
+                clearTimer();
+                time = 15;
+                $("button").each(function () {
+                    if ($(this).text() === eval("q" + qNum + ".correct")) {
+                        $(this).css("color", "green")
+                    }
+                })
+                $("#timer").css("display", "none");
+                $("#incorrect").css("display", "inline")
+                incorrect++;
+                qNum++;
+                setTimeout(displayQ, 3000)
+            }
         }
     })
 
