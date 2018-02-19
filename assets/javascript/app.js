@@ -157,6 +157,7 @@ window.onload = function () {
         }
     }
 
+    //When time runs out
     function timesUp() {
         $("button").each(function () {
             if ($(this).text() === eval("q" + qNum + ".correct")) {
@@ -172,6 +173,7 @@ window.onload = function () {
         setTimeout(displayQ, 3000);
     }
 
+    //When game is over
     function complete() {
         $("#complete").css("display", "grid");
         $("#qa").css("display", "none");
@@ -193,6 +195,7 @@ window.onload = function () {
         $("#rnk").text(rank)
     }
 
+    //Selecting an answer
     $(document).on("click", "#choices", function () {
         if (clicked === false) {
             clicked = true;
@@ -223,11 +226,11 @@ window.onload = function () {
         }
     })
 
+    //Play again? 
     $("#pa").on("click", function () {
         qNum = 1;
         correct = 0;
         incorrect = 0;
         displayQ()
     })
-    //if question is incorrect, display red x next to answer and highlight correct answer in green. 
 }
